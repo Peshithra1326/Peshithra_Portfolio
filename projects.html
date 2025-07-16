@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Steve Milner - Blog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #0d0d0d;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+      padding: 60px 20px;
+    }
+
+    .section-title {
+      font-size: 36px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-title span {
+      color: #f5b400;
+    }
+
+    .resume-bg {
+      text-align: center;
+      font-size: 100px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.05);
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 0;
+      top: 30px;
+      pointer-events: none;
+    }
+
+    .blog-section {
+      margin-top: 100px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .blog-card {
+      background: #161616;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(255, 255, 255, 0.05);
+    }
+
+    .blog-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .blog-content {
+      padding: 20px;
+      border-top: 4px solid #f5b400;
+      background: #1c1c1c;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .blog-content h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 10px;
+    }
+
+    .blog-content p {
+      font-size: 13px;
+      color: #aaa;
+      line-height: 1.5;
+    }
+
+    .side-icons {
+      position: fixed;
+      right: 20px;
+    top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      z-index: 99;
+      transition: all 0.3s ease;
+    }
+
+    .side-icons a i {
+      background: #2a2a2a;
+      padding: 15px;
+      border-radius: 50%;
+      font-size: 18px;
+      color: white;
+      transition: 0.3s ease;
+    }
+
+    .side-icons a i:hover {
+      background-color: #f5b400;
+      color: black;
+    }
+
+    .side-icons a i.home-icon {
+      background-color: #f5b400;
+      color: black;
+    }
+
+    @media (max-width: 768px) {
+        .container{
+            padding:2px 20px;
+        }
+      .resume-bg {
+        font-size: 60px;
+        top: 80px;
+      }
+
+      .section-title {
+        font-size: 32px;
+        margin-top: 60px;
+      }
+
+      .blog-content h3 {
+        font-size: 14px;
+      }
+
+      .blog-content p {
+        font-size: 12px;
+      }
+
+      .side-icons {
+        top: 10px;
+        right: 50%;
+        transform: translateX(50%);
+        flex-direction: row;
+        background: rgba(0, 0, 0, 0.6);
+        padding: 10px 15px;
+        border-radius: 30px;
+        gap: 15px;
+      }
+
+      .side-icons a i {
+        padding: 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0px 15px;
+      }
+
+      .resume-bg {
+        font-size: 40px;
+        top: 100px;
+      }
+
+      .section-title {
+        font-size: 24px;
+        margin-top: 80px;
+      }
+
+      .blog-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .blog-card img {
+        height: 160px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Side Navigation Icons -->
+  <div class="side-icons">
+    <a href="index.html"><i class="fas fa-home home-icon"></i></a>
+    <a href="about.html"><i class="fas fa-user"></i></a>
+    <a href="projects.html"><i class="fas fa-briefcase"></i></a>
+    <a href="contact.html"><i class="fas fa-envelope"></i></a>
+  </div>
+
+  <!-- Main Blog Section -->
+  <div class="container blog-section">
+    <div class="resume-bg">Projects</div>
+    <h2 class="section-title">MY <span>Projects</span></h2>
+    <div class="blog-grid">
+      <div class="blog-card">
+        <a href="https://peshithra1326.github.io/Organic_Shopping/" target="_blank">
+          <img src="images/port1.png" alt="Organic Shopping">
+        </a>
+        <div class="blog-content">
+          <h3>Organic Shopping Home Page</h3>
+          <p>Organic Website is a clean, eco-friendly e-commerce platform for fresh, chemical-free produce. I designed a responsive homepage with a natural color palette, focusing on user experience and trust.</p>
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <a href="https://peshithra1326.github.io/Peshi_Cakes/" target="_blank">
+          <img src="images/port2.png" alt="Cakes">
+        </a>
+        <div class="blog-content">
+          <h3>Nigals Cakes World</h3>
+          <p>Welcome to Nigals Cakes World – your go-to spot for handcrafted cakes, cupcakes, and dessert jars made with love and flair. From birthdays to weddings, we turn sweet moments into unforgettable treats using only the finest ingredients.</p>
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <a href="https://peshithra1326.github.io/Rajan_pickles/" target="_blank">
+          <img src="images/pickles.png" alt="Pickles">
+        </a>
+        <div class="blog-content">
+          <h3>Rajan Pickles</h3>
+          <p>Crafted with time-honored recipes and the finest ingredients, Rajan Pickles brings the bold, tangy flavors of homemade Indian pickles to your table. Each batch is prepared in small quantities to ensure quality, using sun-ripened fruits, aromatic spices, and cold-pressed oils for an unforgettable taste experience.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+<script>
+    // Add a subtle cursor follower effect
+    document.addEventListener('DOMContentLoaded', function() {
+      const cursorFollower = document.createElement('div');
+      cursorFollower.style.cssText = `
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #f5b400;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+        mix-blend-mode: difference;
+        opacity: 0.7;
+      `;
+      document.body.appendChild(cursorFollower);
+      
+      document.addEventListener('mousemove', function(e) {
+        cursorFollower.style.left = e.clientX + 'px';
+        cursorFollower.style.top = e.clientY + 'px';
+      });
+      
+      document.addEventListener('mousedown', function() {
+        cursorFollower.style.transform = 'translate(-50%, -50%) scale(0.8)';
+        cursorFollower.style.backgroundColor = '#f5b400';
+      });
+      
+      document.addEventListener('mouseup', function() {
+        cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
+        cursorFollower.style.backgroundColor = 'transparent';
+      });
+      
+      // Hover effects
+      const hoverElements = document.querySelectorAll('a, .btn, .left-panel img');
+      hoverElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          cursorFollower.style.width = '40px';
+          cursorFollower.style.height = '40px';
+          cursorFollower.style.opacity = '1';
+        });
+        
+        el.addEventListener('mouseleave', () => {
+          cursorFollower.style.width = '20px';
+          cursorFollower.style.height = '20px';
+          cursorFollower.style.opacity = '0.7';
+        });
+      });
+    });
+  </script>

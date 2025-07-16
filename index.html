@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peshithra - Creative Web Designer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    body {
+      background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%);
+      color: white;
+      display: flex;
+      min-height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    /* Animated left panel */
+    .left-panel {
+      width: 40%;
+      background: linear-gradient(45deg, #0d0d0d, #1a1a1a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .animation-container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+    
+    /* Right panel styling */
+    .right-panel {
+      width: 60%;
+      padding: 100px 60px;
+      position: relative;
+      z-index: 10;
+    }
+    
+    .right-panel h1 {
+      font-size: 48px;
+      font-weight: 800;
+      color: #f5b400;
+      line-height: 1.1;
+      margin-bottom: 5px;
+      transform: translateX(-20px);
+      opacity: 0;
+      animation: slideIn 0.6s ease-out forwards;
+      animation-delay: 0.8s;
+    }
+    
+    .right-panel h2 {
+      font-size: 42px;
+      font-weight: 700;
+      margin-top: 0;
+      margin-bottom: 20px;
+      transform: translateX(-20px);
+      opacity: 0;
+      animation: slideIn 0.6s ease-out forwards;
+      animation-delay: 1s;
+    }
+    
+    .right-panel p {
+      margin-top: 20px;
+      font-size: 18px;
+      line-height: 1.8;
+      color: #ddd;
+      max-width: 90%;
+      transform: translateX(-20px);
+      opacity: 0;
+      animation: slideIn 0.6s ease-out forwards;
+      animation-delay: 1.2s;
+    }
+    
+    .btn {
+      margin-top: 40px;
+      display: inline-flex;
+      align-items: center;
+      border: 2px solid #f5b400;
+      padding: 14px 28px;
+      border-radius: 40px;
+      color: white;
+      background: transparent;
+      cursor: pointer;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      transform: translateX(-20px);
+      opacity: 0;
+      animation: slideIn 0.6s ease-out forwards;
+      animation-delay: 1.4s;
+      font-size: 18px;
+    }
+    
+    .btn span {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.4s ease;
+    }
+    
+    .btn i {
+      transition: transform 0.4s ease;
+    }
+    
+    .btn::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 100%;
+      background: #f5b400;
+      z-index: 0;
+      transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .btn:hover::before {
+      width: 100%;
+    }
+    
+    .btn:hover {
+      color: #0d0d0d;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(245, 180, 0, 0.3);
+    }
+    
+    .btn:hover i {
+      transform: translateX(4px);
+    }
+    
+    .side-icons {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      transform: translateY(-20px);
+      opacity: 0;
+      animation: slideDown 0.6s ease-out forwards;
+      animation-delay: 0.6s;
+      z-index: 20;
+    }
+    
+    .side-icons a {
+      display: block;
+      position: relative;
+      text-decoration: none;
+    }
+    
+    .side-icons i {
+      background: #2a2a2a;
+      padding: 15px;
+      border-radius: 50%;
+      font-size: 18px;
+      color: white;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+    }
+    
+    .side-icons i.home-icon {
+      background-color: #f5b400;
+      color: black;
+    }
+    
+    .side-icons a:hover i {
+      background-color: #f5b400;
+      color: black;
+      transform: translateY(-5px) rotate(10deg);
+      box-shadow: 0 5px 15px rgba(245, 180, 0, 0.4);
+    }
+    
+    .side-icons a::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      right: 60px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #f5b400;
+      color: black;
+      padding: 5px 15px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+    
+    .side-icons a:hover::after {
+      opacity: 1;
+      right: 70px;
+    }
+    
+    .corner-brain {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      animation: pulse 2s infinite ease-in-out;
+      z-index: 20;
+    }
+    
+    .corner-brain img {
+      width: 50px;
+      height: 50px;
+      filter: drop-shadow(0 0 5px rgba(245, 180, 0, 0.5));
+    }
+    
+    /* Animations */
+    @keyframes slideIn {
+      from {
+        transform: translateX(-20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+    
+    @keyframes slideDown {
+      from {
+        transform: translateY(-20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 5px rgba(245, 180, 0, 0.5));
+      }
+      50% {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 15px rgba(245, 180, 0, 0.8));
+      }
+      100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 5px rgba(245, 180, 0, 0.5));
+      }
+    }
+    
+    /* Responsive design */
+    @media (max-width: 992px) {
+      body {
+        flex-direction: column;
+      }
+      
+      .left-panel, .right-panel {
+        width: 100%;
+      }
+      
+      .left-panel {
+        height: 40vh;
+      }
+      
+      .right-panel {
+        padding: 60px 30px;
+        height: 60vh;
+        overflow-y: auto;
+      }
+      
+      .side-icons {
+        flex-direction: row;
+        top: 10px;
+        right: 65px;
+        gap: 10px;
+      }
+      
+      .side-icons a::after {
+        top: auto;
+        bottom: -40px;
+        left: 50%;
+        transform: translateX(-50%);
+        right: auto;
+      }
+      
+      .side-icons a:hover::after {
+        bottom: -35px;
+        right: auto;
+        left: 50%;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .right-panel h1 {
+        font-size: 36px;
+        margin-top: 30px;
+      }
+      
+      .right-panel h2 {
+        font-size: 32px;
+      }
+      
+      .right-panel p {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Animated left panel -->
+  <div class="left-panel">
+    <div class="animation-container" id="animationCanvas"></div>
+    <div class="floating-text">
+      <h3>DESIGN</h3>
+      <h3>CODE</h3>
+      <h3>CREATE</h3>
+    </div>
+  </div>
+  
+  <!-- Right panel with content -->
+  <div class="right-panel">
+    <div class="side-icons">
+      <a href="index.html" data-tooltip="Home"><i class="fas fa-home home-icon"></i></a>
+      <a href="about.html" data-tooltip="About"><i class="fas fa-user"></i></a>
+      <a href="projects.html" data-tooltip="Projects"><i class="fas fa-briefcase"></i></a>
+      <a href="contact.html" data-tooltip="Contact"><i class="fas fa-envelope"></i></a>
+    </div>
+    
+    <h1>I'M PESHITHRA.</h1>
+    <h2>WEB DESIGNER</h2>
+    <p>
+      I'm Peshithra, a passionate web designer and software developer who thrives on crafting seamless digital experiences. With a strong focus on creativity and clean design, I aim to build user-centric websites and applications that make a real impact. I love turning ideas into reality through code and innovation.
+    </p>
+    <a href="about.html" class="btn"><span>MORE ABOUT ME <i class="fas fa-arrow-right"></i></span></a>
+    
+    <div class="corner-brain">
+      <img src="https://img.icons8.com/color/48/brain.png" alt="Brain Icon">
+    </div>
+  </div>
+  
+  <script>
+    // Create the abstract animation
+    document.addEventListener('DOMContentLoaded', function() {
+      const container = document.getElementById('animationCanvas');
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      container.appendChild(canvas);
+      
+      // Set canvas size
+      canvas.width = container.clientWidth;
+      canvas.height = container.clientHeight;
+      
+      // Handle window resize
+      window.addEventListener('resize', function() {
+        canvas.width = container.clientWidth;
+        canvas.height = container.clientHeight;
+      });
+      
+      // Particles array
+      const particles = [];
+      const particleCount = 100;
+      
+      // Create particles
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 5 + 2,
+          speedX: (Math.random() - 0.5) * 2,
+          speedY: (Math.random() - 0.5) * 2,
+          color: `hsl(${Math.random() * 60 + 30}, 100%, 60%)`,
+          shape: Math.random() > 0.5 ? 'circle' : 'square'
+        });
+      }
+      
+      // Mouse position
+      const mouse = {
+        x: canvas.width / 2,
+        y: canvas.height / 2,
+        radius: 100
+      };
+      
+      // Track mouse position
+      canvas.addEventListener('mousemove', function(event) {
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = event.clientX - rect.left;
+        mouse.y = event.clientY - rect.top;
+      });
+      
+      // Draw connection lines
+      function drawLines() {
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance < 150) {
+              const alpha = 1 - distance / 150;
+              ctx.strokeStyle = `rgba(245, 180, 0, ${alpha * 0.3})`;
+              ctx.lineWidth = 1;
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.stroke();
+            }
+          }
+        }
+      }
+      
+      // Draw particles
+      function drawParticles() {
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          
+          // Draw particle
+          ctx.fillStyle = p.color;
+          ctx.beginPath();
+          
+          if (p.shape === 'circle') {
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          } else {
+            ctx.fillRect(p.x - p.size, p.y - p.size, p.size * 2, p.size * 2);
+          }
+          
+          ctx.fill();
+          
+          // Update position
+          p.x += p.speedX;
+          p.y += p.speedY;
+          
+          // Bounce off walls
+          if (p.x <= 0 || p.x >= canvas.width) p.speedX *= -1;
+          if (p.y <= 0 || p.y >= canvas.height) p.speedY *= -1;
+          
+          // Mouse interaction
+          const dx = mouse.x - p.x;
+          const dy = mouse.y - p.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          if (distance < mouse.radius) {
+            const angle = Math.atan2(dy, dx);
+            const force = (mouse.radius - distance) / mouse.radius;
+            
+            p.x -= Math.cos(angle) * force * 5;
+            p.y -= Math.sin(angle) * force * 5;
+          }
+        }
+      }
+      
+      // Draw geometric shapes
+      function drawShapes() {
+        const time = Date.now() * 0.001;
+        
+        // Rotating triangles
+        ctx.save();
+        ctx.translate(canvas.width * 0.3, canvas.height * 0.7);
+        ctx.rotate(time * 0.3);
+        ctx.strokeStyle = 'rgba(245, 180, 0, 0.2)';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(0, -50);
+        ctx.lineTo(43.3, 25);
+        ctx.lineTo(-43.3, 25);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.restore();
+        
+        // Moving hexagon
+        ctx.save();
+        ctx.translate(canvas.width * 0.7 + Math.sin(time) * 30, canvas.height * 0.3 + Math.cos(time) * 20);
+        ctx.strokeStyle = 'rgba(245, 180, 0, 0.3)';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        for (let i = 0; i < 6; i++) {
+          const angle = Math.PI / 3 * i;
+          ctx.lineTo(Math.cos(angle) * 40, Math.sin(angle) * 40);
+        }
+        ctx.closePath();
+        ctx.stroke();
+        ctx.restore();
+      }
+      
+      // Draw floating text
+      function drawFloatingText() {
+        const time = Date.now() * 0.001;
+        
+        ctx.save();
+        ctx.font = 'bold 60px Poppins';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        
+        // Gradient for text
+        const gradient = ctx.createLinearGradient(0, canvas.height * 0.3, 0, canvas.height * 0.7);
+        gradient.addColorStop(0, '#f5b400');
+        gradient.addColorStop(1, '#ffde73');
+        
+        ctx.fillStyle = gradient;
+        ctx.globalAlpha = 0.2;
+        
+        // Position text in the center
+        ctx.fillText('DESIGN', canvas.width/2, canvas.height * 0.3 + Math.sin(time) * 10);
+        ctx.fillText('CREATE', canvas.width/2, canvas.height * 0.5 + Math.cos(time * 1.2) * 8);
+        ctx.fillText('INNOVATE', canvas.width/2, canvas.height * 0.7 + Math.sin(time * 0.8) * 12);
+        
+        ctx.restore();
+      }
+      
+      // Animation loop
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Draw elements
+        drawLines();
+        drawShapes();
+        drawParticles();
+        drawFloatingText();
+        
+        requestAnimationFrame(animate);
+      }
+      
+      animate();
+      
+      // Add cursor follower effect
+      const cursorFollower = document.createElement('div');
+      cursorFollower.style.cssText = `
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #f5b400;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+        mix-blend-mode: difference;
+        opacity: 0.7;
+      `;
+      document.body.appendChild(cursorFollower);
+      
+      document.addEventListener('mousemove', function(e) {
+        cursorFollower.style.left = e.clientX + 'px';
+        cursorFollower.style.top = e.clientY + 'px';
+      });
+      
+      document.addEventListener('mousedown', function() {
+        cursorFollower.style.transform = 'translate(-50%, -50%) scale(0.8)';
+        cursorFollower.style.backgroundColor = '#f5b400';
+      });
+      
+      document.addEventListener('mouseup', function() {
+        cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
+        cursorFollower.style.backgroundColor = 'transparent';
+      });
+      
+      // Hover effects
+      const hoverElements = document.querySelectorAll('a, .btn');
+      hoverElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          cursorFollower.style.width = '40px';
+          cursorFollower.style.height = '40px';
+          cursorFollower.style.opacity = '1';
+        });
+        
+        el.addEventListener('mouseleave', () => {
+          cursorFollower.style.width = '20px';
+          cursorFollower.style.height = '20px';
+          cursorFollower.style.opacity = '0.7';
+        });
+      });
+    });
+  </script>
+</body>
+</html>

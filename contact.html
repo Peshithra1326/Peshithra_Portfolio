@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact - Steve Milner</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%);
+      color: white;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+      padding: 80px 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .contact-left {
+      flex: 1;
+      min-width: 300px;
+      z-index: 1;
+    }
+
+    .contact-left h2 {
+      font-size: 38px;
+      margin-bottom: 25px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .contact-left h2:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 70px;
+      height: 4px;
+      background: #f5b400;
+      border-radius: 2px;
+    }
+
+    .contact-left p {
+      margin-bottom: 30px;
+      color: #ccc;
+      line-height: 1.8;
+      max-width: 90%;
+    }
+
+    .contact-info {
+      margin-bottom: 25px;
+      display: flex;
+      align-items: flex-start;
+      transition: transform 0.3s ease;
+    }
+
+    .contact-info:hover {
+      transform: translateX(8px);
+    }
+
+    .contact-info i {
+      color: #f5b400;
+      margin-right: 15px;
+      font-size: 20px;
+      min-width: 20px;
+    }
+
+    .contact-info span {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .contact-right {
+      flex: 1;
+      min-width: 300px;
+      background: rgba(28, 28, 28, 0.6);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 35px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+      position: relative;
+    }
+
+    .contact-right input,
+    .contact-right textarea {
+      width: 100%;
+      padding: 15px 20px;
+      margin-bottom: 25px;
+      background: #1c1c1c;
+      border: 2px solid transparent;
+      border-radius: 10px;
+      color: white;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .contact-right input:focus,
+    .contact-right textarea:focus {
+      border-color: #f5b400;
+      outline: none;
+      box-shadow: 0 0 10px rgba(245, 180, 0, 0.3);
+    }
+
+    .contact-right textarea {
+      height: 180px;
+      resize: none;
+    }
+
+    .send-btn {
+      display: inline-flex;
+      align-items: center;
+      border: 2px solid #f5b400;
+      border-radius: 30px;
+      padding: 14px 30px;
+      background: transparent;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      font-size: 16px;
+      position: relative;
+    }
+
+    .send-btn:hover {
+      background: #f5b400;
+      color: #0d0d0d;
+      box-shadow: 0 0 20px rgba(245, 180, 0, 0.5);
+    }
+
+    .send-btn i {
+      margin-left: 10px;
+      background: #f5b400;
+      color: black;
+      border-radius: 50%;
+      padding: 8px;
+      transition: transform 0.3s ease;
+    }
+
+    .send-btn:hover i {
+      transform: translateX(5px);
+    }
+
+    .section-title span {
+      color: #f5b400;
+    }
+
+    .side-icons {
+      position: fixed;
+      right: 25px;
+      top: 155px;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      z-index: 100;
+    }
+
+    .side-icons a i {
+      background: #2a2a2a;
+      padding: 15px;
+      border-radius: 50%;
+      font-size: 18px;
+      color: white;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .side-icons a i:hover {
+      background-color: #f5b400;
+      color: black;
+    }
+
+    .side-icons a i.home-icon {
+      background-color: #f5b400;
+      color: black;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 30px 0;
+      color: #777;
+      font-size: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: 40px;
+    }
+
+    .error-message {
+      color: #ff4d4d;
+      font-size: 14px;
+      margin-top: -20px;
+      margin-bottom: 20px;
+      display: none;
+    }
+
+    .success-message {
+      background: rgba(40, 167, 69, 0.1);
+      border: 1px solid #28a745;
+      color: #28a745;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+      text-align: center;
+      display: none;
+    }
+
+    @media (max-width: 900px) {
+      .container {
+        flex-direction: column;
+        padding-top: 120px;
+      }
+
+      .side-icons {
+        flex-direction: row;
+        top: 10px;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, 0.6);
+        padding: 10px 20px;
+        border-radius: 30px;
+        gap: 15px;
+      }
+
+      .side-icons a .tooltip {
+        display: none;
+      }
+
+      .section-title {
+        font-size: 32px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .contact-right {
+        padding: 25px;
+      }
+
+      .section-title {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Side Navigation -->
+  <div class="side-icons">
+    <a href="index.html"><i class="fas fa-home home-icon"></i></a>
+    <a href="about.html"><i class="fas fa-user"></i></a>
+    <a href="projects.html"><i class="fas fa-briefcase"></i></a>
+    <a href="contact.html"><i class="fas fa-envelope"></i></a>
+  </div>
+
+  <div class="container">
+    <div class="contact-left">
+      <h2 class="section-title">GET IN <span>TOUCH</span></h2>
+      <p>Feel free to get in touch with me. I am always open to discussing new projects, creative ideas or opportunities to be part of your visions.</p>
+
+      <div class="contact-info">
+        <i class="fas fa-map-marker-alt"></i>
+        <div>
+          <span>ADDRESS POINT</span>
+          <p>Tamil Nadu, India</p>
+        </div>
+      </div>
+
+      <div class="contact-info">
+        <i class="fas fa-envelope"></i>
+        <div>
+          <span>MAIL ME</span>
+          <p>peshiperumal26@mail.com</p>
+        </div>
+      </div>
+
+      <div class="contact-info">
+        <i class="fas fa-phone"></i>
+        <div>
+          <span>CALL ME</span>
+          <p>+91 9876543245</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-right">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <div class="error-message" id="name-error">Please enter your name</div>
+
+      <input type="email" id="email" placeholder="Your Email" required>
+      <div class="error-message" id="email-error">Please enter a valid email</div>
+
+      <input type="text" id="subject" placeholder="Your Subject" required>
+      <div class="error-message" id="subject-error">Please enter a subject</div>
+
+      <textarea id="message" placeholder="Your Message" required></textarea>
+      <div class="error-message" id="message-error">Please enter your message</div>
+
+      <button class="send-btn" id="sendBtn">SEND MESSAGE <i class="fas fa-paper-plane"></i></button>
+
+      <div class="success-message" id="successMessage">
+        <i class="fas fa-check-circle"></i> Your message has been sent successfully!
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>&copy; 2023 Steve Milner. All Rights Reserved.</p>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const sendBtn = document.getElementById('sendBtn');
+      const nameInput = document.getElementById('name');
+      const emailInput = document.getElementById('email');
+      const subjectInput = document.getElementById('subject');
+      const messageInput = document.getElementById('message');
+      const successMessage = document.getElementById('successMessage');
+
+      const nameError = document.getElementById('name-error');
+      const emailError = document.getElementById('email-error');
+      const subjectError = document.getElementById('subject-error');
+      const messageError = document.getElementById('message-error');
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      sendBtn.addEventListener('click', function () {
+        let isValid = true;
+        resetErrors();
+
+        if (!nameInput.value.trim()) {
+          showError(nameInput, nameError);
+          isValid = false;
+        }
+
+        if (!emailInput.value.trim() || !emailRegex.test(emailInput.value)) {
+          showError(emailInput, emailError);
+          isValid = false;
+        }
+
+        if (!subjectInput.value.trim()) {
+          showError(subjectInput, subjectError);
+          isValid = false;
+        }
+
+        if (!messageInput.value.trim()) {
+          showError(messageInput, messageError);
+          isValid = false;
+        }
+
+        if (isValid) {
+          successMessage.style.display = 'block';
+
+          setTimeout(() => {
+            nameInput.value = '';
+            emailInput.value = '';
+            subjectInput.value = '';
+            messageInput.value = '';
+            successMessage.style.display = 'none';
+          }, 3000);
+        }
+      });
+
+      function showError(input, errorElement) {
+        input.classList.add('input-error');
+        errorElement.style.display = 'block';
+
+        input.addEventListener('input', () => {
+          if (input === emailInput) {
+            if (emailRegex.test(input.value)) resetError(input, errorElement);
+          } else if (input.value.trim()) {
+            resetError(input, errorElement);
+          }
+        });
+      }
+
+      function resetError(input, errorElement) {
+        input.classList.remove('input-error');
+        errorElement.style.display = 'none';
+      }
+
+      function resetErrors() {
+        resetError(nameInput, nameError);
+        resetError(emailInput, emailError);
+        resetError(subjectInput, subjectError);
+        resetError(messageInput, messageError);
+      }
+    });
+ 
+    // Add a subtle cursor follower effect
+    document.addEventListener('DOMContentLoaded', function() {
+      const cursorFollower = document.createElement('div');
+      cursorFollower.style.cssText = `
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #f5b400;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+        mix-blend-mode: difference;
+        opacity: 0.7;
+      `;
+      document.body.appendChild(cursorFollower);
+      
+      document.addEventListener('mousemove', function(e) {
+        cursorFollower.style.left = e.clientX + 'px';
+        cursorFollower.style.top = e.clientY + 'px';
+      });
+      
+      document.addEventListener('mousedown', function() {
+        cursorFollower.style.transform = 'translate(-50%, -50%) scale(0.8)';
+        cursorFollower.style.backgroundColor = '#f5b400';
+      });
+      
+      document.addEventListener('mouseup', function() {
+        cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
+        cursorFollower.style.backgroundColor = 'transparent';
+      });
+      
+      // Hover effects
+      const hoverElements = document.querySelectorAll('a, .btn, .left-panel img');
+      hoverElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          cursorFollower.style.width = '40px';
+          cursorFollower.style.height = '40px';
+          cursorFollower.style.opacity = '1';
+        });
+        
+        el.addEventListener('mouseleave', () => {
+          cursorFollower.style.width = '20px';
+          cursorFollower.style.height = '20px';
+          cursorFollower.style.opacity = '0.7';
+        });
+      });
+    });
+
+  </script>
+</body>
+</html>
